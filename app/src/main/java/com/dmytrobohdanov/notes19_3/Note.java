@@ -5,15 +5,16 @@ import android.graphics.Color;
 import android.widget.LinearLayout;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Random;
 
 
 /**
  * Note is class for keeping notes
- * each note has either id, color, text
- * or id, photo
  */
+//todo: write description
 
 public class Note {
     //keeps last added note's id
@@ -22,7 +23,7 @@ public class Note {
     public static final int TITLE_MAX_LENGTH = 30;
 
     //array of note's colors
-    //todo change colors (example - grey)
+    //todo change colors (example - shades of grey)
     private final int[] colors = {Color.rgb(64, 249, 138), Color.rgb(255, 255, 102)};
 
     //Note's data
@@ -31,8 +32,8 @@ public class Note {
     private String titleOfNote;
     private String textOfNote;
 
-    private String[] tags;
-    private int[] colorTags;
+    private HashSet<String> tags;
+    private HashSet<Integer> colorTags;
     private long lastUpdateTime;
     private long createdTime;
 
@@ -42,6 +43,7 @@ public class Note {
     /**
      * Constructor
      * for note without specified title
+     * cuts first Note.TITLE_MAX_LENGTH symbols from text and sets them as title
      *
      * @param text of note
      */
@@ -71,10 +73,13 @@ public class Note {
         //todo: check length of title
         setTitle(titleOfNote);
 
+        //initialization of tags and colorTags
+        tags = new HashSet<>();
+        colorTags = new HashSet<>();
+
         //set time of creation and last update
-        long currentTime = getCurrentTime();
-        setCreationTime(currentTime);
-        setLastUpdateTime(currentTime);
+        setCreationTime(getCurrentTime());
+        setLastUpdateTime();
     }
 
 
@@ -83,15 +88,24 @@ public class Note {
      * for construct only from DB
      */
     public Note(int id, int colorOfNote, String titleOfNote, String textOfNote,
-                String[] tags, int[] colorTags, long lastUpdateTime, long createdTime) {
+                String[] tags, Integer[] colorTags, long lastUpdateTime, long createdTime) {
+        //todo: think about changing arrays to HashSet
         this.id = id;
         this.colorOfNote = colorOfNote;
         this.titleOfNote = titleOfNote;
         this.textOfNote = textOfNote;
-        this.tags = tags;
-        this.colorTags = colorTags;
         this.lastUpdateTime = lastUpdateTime;
         this.createdTime = createdTime;
+
+        //adding colorTags to note
+        //todo: could be not comfortable working with Integer instead of int
+        Collections.addAll(this.colorTags, colorTags);
+//        for(int color: colorTags){
+//            this.colorTags.add(color);
+//        }
+
+        //adding tags to note
+        Collections.addAll(this.tags, tags);
     }
 
 
@@ -111,6 +125,34 @@ public class Note {
 
 
     //public methods
+
+    /**
+     * Adding new tag to array of tags
+     */
+    public boolean addTag(String newTag){
+        return this.tags.add(newTag);
+    }
+
+    /**
+     * Adding new color tag to note
+     */
+    public boolean addColorTag(int newColorTag){
+        return this.colorTags.add(newColorTag);
+    }
+
+    /**
+     * Removing specified tag from note
+     */
+    public boolean removeTag(String tagToRemove){
+        return this.tags.remove(tagToRemove);
+    }
+
+    /**
+     * Removing specified color tag from note
+     */
+    public boolean removeColorTag(int colorTagToRemove){
+        return this.colorTags.remove(colorTagToRemove);
+    }
 
 
     //public setters
@@ -184,6 +226,34 @@ public class Note {
      */
     public int getColor() {
         return colorOfNote;
+    }
+
+    /**
+     * @return HashSet of tags of note
+     */
+    public HashSet<String> getTags(){
+        return tags;
+    }
+
+    /**
+     * @return HashSet of color tags of note
+     */
+    public HashSet<Integer> getColorTags(){
+        return colorTags;
+    }
+
+    /**
+     * @return cteation time in millisec from 0-time
+     */
+    public long getCreationTime(){
+        return this.createdTime;
+    }
+
+    /**
+     * @return last update time in millisec from 0-time
+     */
+    public long getLastUpdateTime(){
+        return this.lastUpdateTime;
     }
 
 
