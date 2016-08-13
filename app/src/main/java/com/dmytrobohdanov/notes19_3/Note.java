@@ -311,4 +311,3 @@ public class Note {
         this.createdTime = creationTime;
     }
 }
-
