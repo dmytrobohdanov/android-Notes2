@@ -1,10 +1,7 @@
 package com.dmytrobohdanov.notes19_3;
 
-import android.app.Activity;
 import android.graphics.Color;
-import android.widget.LinearLayout;
 
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashSet;
@@ -129,28 +126,28 @@ public class Note {
     /**
      * Adding new tag to array of tags
      */
-    public boolean addTag(String newTag){
+    public boolean addTag(String newTag) {
         return this.tags.add(newTag);
     }
 
     /**
      * Adding new color tag to note
      */
-    public boolean addColorTag(int newColorTag){
+    public boolean addColorTag(int newColorTag) {
         return this.colorTags.add(newColorTag);
     }
 
     /**
      * Removing specified tag from note
      */
-    public boolean removeTag(String tagToRemove){
+    public boolean removeTag(String tagToRemove) {
         return this.tags.remove(tagToRemove);
     }
 
     /**
      * Removing specified color tag from note
      */
-    public boolean removeColorTag(int colorTagToRemove){
+    public boolean removeColorTag(int colorTagToRemove) {
         return this.colorTags.remove(colorTagToRemove);
     }
 
@@ -231,28 +228,28 @@ public class Note {
     /**
      * @return HashSet of tags of note
      */
-    public HashSet<String> getTags(){
+    public HashSet<String> getTags() {
         return tags;
     }
 
     /**
      * @return HashSet of color tags of note
      */
-    public HashSet<Integer> getColorTags(){
+    public HashSet<Integer> getColorTags() {
         return colorTags;
     }
 
     /**
      * @return cteation time in millisec from 0-time
      */
-    public long getCreationTime(){
+    public long getCreationTime() {
         return this.createdTime;
     }
 
     /**
      * @return last update time in millisec from 0-time
      */
-    public long getLastUpdateTime(){
+    public long getLastUpdateTime() {
         return this.lastUpdateTime;
     }
 
