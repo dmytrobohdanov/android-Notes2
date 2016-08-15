@@ -86,7 +86,6 @@ public class Note {
      */
     public Note(int id, int colorOfNote, String titleOfNote, String textOfNote,
                 String[] tags, Integer[] colorTags, long lastUpdateTime, long createdTime) {
-        //todo: think about changing arrays to HashSet
         this.id = id;
         this.colorOfNote = colorOfNote;
         this.titleOfNote = titleOfNote;
@@ -117,6 +116,8 @@ public class Note {
     public static String timeToString(long time) {
         String timeString;
         //todo get string from time. It should looks like: "Dec, 12" or "June, 15"
+        //temp:
+        timeString = "time: " + time;
         return timeString;
     }
 
@@ -255,7 +256,7 @@ public class Note {
 
     /**
      * Returns title of note
-     *
+     * <p/>
      * needed to form array for list fragment adapter
      * we pass array of notes to adapter and it use toString() method to for list of elements
      */ //todo rewrite
