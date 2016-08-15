@@ -253,6 +253,15 @@ public class Note {
         return this.lastUpdateTime;
     }
 
+    /**
+     * Returns title of note
+     *
+     * needed to form array for list fragment adapter
+     * we pass array of notes to adapter and it use toString() method to for list of elements
+     */ //todo rewrite
+    public String toString() {
+        return this.titleOfNote;
+    }
 
     /**
      * Set idGenerator - the variable thats sets our id initialization
