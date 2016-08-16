@@ -20,7 +20,7 @@ public class NoteFragment extends Fragment {
     public void setNoteId(int id){
         this.noteId = id;
     }
-    
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
