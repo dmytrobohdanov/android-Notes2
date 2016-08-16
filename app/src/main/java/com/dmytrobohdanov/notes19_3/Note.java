@@ -234,6 +234,25 @@ public class Note {
     }
 
     /**
+     * Forming string from array of tags
+     *
+     * @return string of text
+     */
+    public String getTagsString() {
+        String tagsString = "";
+
+        //forming string from array of tags
+        for (String tag : tags) {
+            tagsString += ("#" + tag + " ");
+        }
+
+        //cutting last space
+        tagsString = tagsString.substring(0, tagsString.length() - 1);
+
+        return tagsString;
+    }
+
+    /**
      * @return HashSet of color tags of note
      */
     public HashSet<Integer> getColorTags() {

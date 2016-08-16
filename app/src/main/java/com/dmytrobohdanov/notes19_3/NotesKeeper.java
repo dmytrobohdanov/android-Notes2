@@ -1,9 +1,13 @@
 package com.dmytrobohdanov.notes19_3;
 
 
+import android.util.Log;
+
 import java.util.ArrayList;
 
 public class NotesKeeper {
+    private final String LOG_TAG = this.getClass().getSimpleName();
+
     private static NotesKeeper instance;
 
     private ArrayList <Note> notes;
@@ -52,4 +56,21 @@ public class NotesKeeper {
         return success;
     }
 
+    /**
+     * Returns note with specified ID
+     *
+     * @param noteID id of note
+     * @return note with specified ID,
+     * or NULL in case if there is no note with such id
+     */
+    public Note getNoteByID(int noteID){
+        for (Note note: notes) {
+            if (noteID == note.getID()){
+                return note;
+            }
+        }
+
+        Log.e(LOG_TAG, "There is no note with such id");
+        return null;
+    }
 }
