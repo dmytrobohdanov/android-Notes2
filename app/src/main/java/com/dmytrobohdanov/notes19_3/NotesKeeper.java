@@ -16,6 +16,12 @@ public class NotesKeeper {
     //constructor
     private NotesKeeper(){
         notes = new ArrayList<>();
+
+        //todo: remove temp lines
+        addNote(new Note("First note", "text of it"));
+        addNote(new Note("Second note", "text of it 2"));
+        addNote(new Note("3rd note", "text of it 3"));
+        addNote(new Note("4th note", "text of it 4"));
     }
 
     public static NotesKeeper getInstance(){

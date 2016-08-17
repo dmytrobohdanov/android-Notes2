@@ -241,6 +241,10 @@ public class Note {
     public String getTagsString() {
         String tagsString = "";
 
+        if(tags.isEmpty() || tags == null){
+            return tagsString;
+        }
+
         //forming string from array of tags
         for (String tag : tags) {
             tagsString += ("#" + tag + " ");

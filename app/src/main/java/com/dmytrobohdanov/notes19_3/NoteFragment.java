@@ -1,11 +1,13 @@
 package com.dmytrobohdanov.notes19_3;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import android.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+
+import java.util.ArrayList;
 
 public class NoteFragment extends Fragment {
     //string key to work with Bundle savedInstanceState
@@ -17,8 +19,15 @@ public class NoteFragment extends Fragment {
     public NoteFragment() {
     }
 
-    public void setNoteId(int id){
-        this.noteId = id;
+    /**
+     * Specifing which note need to be shown in fragment
+     *
+     * @param indexInArray of element in list fragment
+     */
+    public void setNoteId(int indexInArray){
+        ArrayList<Note> notes = NotesKeeper.getInstance().getArrayOfNotes();
+        Note note = notes.get(indexInArray);
+        this.noteId = note.getID();
     }
 
     @Override
