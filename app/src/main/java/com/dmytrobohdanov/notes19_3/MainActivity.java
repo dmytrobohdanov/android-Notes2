@@ -1,5 +1,6 @@
 package com.dmytrobohdanov.notes19_3;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -28,7 +29,9 @@ public class MainActivity extends AppCompatActivity implements NotesListFragment
             ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
             ft.commit();
         } else {
-            //todo
+            Intent intent = new Intent(this, NoteActivity.class);
+            intent.putExtra(NoteActivity.EXTRA_NOTE_ID, id);
+            startActivity(intent);
         }
     }
 }
