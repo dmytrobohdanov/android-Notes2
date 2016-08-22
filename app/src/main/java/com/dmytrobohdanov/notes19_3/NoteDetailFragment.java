@@ -9,14 +9,14 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class NoteFragment extends Fragment {
+public class NoteDetailFragment extends Fragment {
     //string key to work with Bundle savedInstanceState
     private static final String NOTE_ID_KEY = "noteId";
 
     //id of note to display
     private int noteId;
 
-    public NoteFragment() {
+    public NoteDetailFragment() {
     }
 
     /**
@@ -62,7 +62,14 @@ public class NoteFragment extends Fragment {
             title.setText(note.getTitle());
 
             TextView text = (TextView) view.findViewById(R.id.textOfNote);
-            title.setText(note.getText());
+//            title.setText(note.getText());
+            //todo: temp - remove later
+            String str = note.getText();
+            if(str == null || str.isEmpty()){
+                str = str + "it was new note" + note.getID();
+            }
+            text.setText(str);
+
 
             TextView tags = (TextView) view.findViewById(R.id.tags);
             tags.setText(note.getTagsString());
@@ -77,5 +84,7 @@ public class NoteFragment extends Fragment {
             TextView createdDate = (TextView) view.findViewById(R.id.createdTime);
             createdDate.setText(Note.timeToString(note.getCreationTime()));
         }
+
+        //todo: if text field is empty - set focus to editText of textOfNote element
     }
 }

@@ -10,19 +10,22 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class NotesListFragment extends ListFragment {
     interface NoteListListener {
         void itemClicked(int id);
     }
 
     private NoteListListener listener;
+    private static ArrayAdapter<Note> adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
         //associating list of notes with listFragment using ArrayAdapter
-        ArrayAdapter<Note> adapter = new ArrayAdapter<>(
+        adapter = new ArrayAdapter<>(
                 inflater.getContext(),
                 android.R.layout.simple_list_item_1,
                 NotesKeeper.getInstance().getArrayOfNotes());
@@ -50,4 +53,12 @@ public class NotesListFragment extends ListFragment {
             listener.itemClicked((int) id);
         }
     }
+
+    /**
+     * notifing adapter about changing array
+     */
+    public static void notifyArrayChanges(){
+        adapter.notifyDataSetChanged();
+    }
+
 }

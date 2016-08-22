@@ -79,4 +79,8 @@ public class NotesKeeper {
         Log.e(LOG_TAG, "There is no note with such id");
         return null;
     }
+
+    public int getIndexOf(Note note) {
+        return notes.indexOf(note);
+    }
 }

@@ -1,37 +1,27 @@
 package com.dmytrobohdanov.notes19_3;
 
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.app.FragmentTransaction;
+
 
 public class MainActivity extends AppCompatActivity implements NotesListFragment.NoteListListener {
+    private OpenNoteHandler openNoteHandler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        AddNoteButton addNoteButton = new AddNoteButton(this);
+//        openNoteHandler = OpenNoteHandler.getInstance(this);
     }
 
     @Override
     public void itemClicked(int id) {
-        View fragmentContainer = findViewById(R.id.fragment_container);
-
-        //there is fragment container only in case of layout-land,
-        //so if it is not null - using it, else - using new activity
-        if (fragmentContainer != null) {
-            NoteFragment noteFragment = new NoteFragment();
-            FragmentTransaction ft = getFragmentManager().beginTransaction();
-            noteFragment.setNoteId(id);
-            ft.replace(R.id.fragment_container, noteFragment);
-//            ft.addToBackStack(null);
-            ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            ft.commit();
-        } else {
-            Intent intent = new Intent(this, NoteActivity.class);
-            intent.putExtra(NoteActivity.EXTRA_NOTE_ID, id);
-            startActivity(intent);
-        }
+//        openNoteHandler.openNote(id);
+        new OpenNoteHandler(this).openNote(id);
     }
+
 }

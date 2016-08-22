@@ -1,6 +1,8 @@
 package com.dmytrobohdanov.notes19_3;
 
 import android.graphics.Color;
+import android.util.Log;
+import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.Date;
@@ -14,6 +16,8 @@ import java.util.Random;
 //todo: write description
 
 public class Note {
+    private final String LOG_TAG = this.getClass().getSimpleName();
+
     //keeps last added note's id
     private static int idGenerator = 0;
 
@@ -45,6 +49,10 @@ public class Note {
      * @param text of note
      */
     public Note(String text) {
+        //creating note with temp title
+        this("", text);
+
+        //setting new correct title
         String title = "";
         int textLength = text.length();
         if (textLength > Note.TITLE_MAX_LENGTH) {
@@ -53,7 +61,7 @@ public class Note {
             title = title + text;
         }
 
-        new Note(title, text);
+        setTitle(title);
     }
 
     /**
@@ -241,7 +249,7 @@ public class Note {
     public String getTagsString() {
         String tagsString = "";
 
-        if(tags.isEmpty() || tags == null){
+        if(tags == null || tags.isEmpty()){
             return tagsString;
         }
 
