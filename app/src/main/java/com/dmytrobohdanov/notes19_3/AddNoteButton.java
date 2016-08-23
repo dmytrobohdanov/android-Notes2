@@ -8,6 +8,7 @@ import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import java.lang.reflect.GenericArrayType;
 
@@ -23,7 +24,7 @@ public class AddNoteButton {
         setParamsToFAB(fab);
         setListener(fab);
 
-        LinearLayout layout = (LinearLayout) activity.findViewById(LAYOUT_ID);
+        RelativeLayout layout = (RelativeLayout) activity.findViewById(LAYOUT_ID);
         layout.addView(fab);
     }
 
