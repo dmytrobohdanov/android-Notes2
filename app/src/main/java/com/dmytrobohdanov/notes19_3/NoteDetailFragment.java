@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 
+/**
+ * Fragment which visualizes data from Note
+ */
 public class NoteDetailFragment extends Fragment {
     //string key to work with Bundle savedInstanceState
     private static final String NOTE_ID_KEY = "noteId";
@@ -24,7 +27,7 @@ public class NoteDetailFragment extends Fragment {
      *
      * @param indexInArray of element in list fragment
      */
-    public void setNoteId(int indexInArray){
+    public void setNoteId(int indexInArray) {
         ArrayList<Note> notes = NotesKeeper.getInstance().getArrayOfNotes();
         Note note = notes.get(indexInArray);
         this.noteId = note.getID();
@@ -65,7 +68,7 @@ public class NoteDetailFragment extends Fragment {
 //            title.setText(note.getText());
             //todo: temp - remove later
             String str = note.getText();
-            if(str == null || str.isEmpty()){
+            if (str == null || str.isEmpty()) {
                 str = str + "it was new note" + note.getID();
             }
             text.setText(str);

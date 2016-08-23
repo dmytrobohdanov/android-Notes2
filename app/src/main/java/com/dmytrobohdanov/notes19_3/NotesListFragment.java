@@ -2,7 +2,6 @@ package com.dmytrobohdanov.notes19_3;
 
 import android.app.Activity;
 import android.app.ListFragment;
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +9,9 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
-import java.util.ArrayList;
-
+/**
+ * Holder for list of notes
+ */
 public class NotesListFragment extends ListFragment {
     interface NoteListListener {
         void itemClicked(int id);
@@ -56,8 +56,9 @@ public class NotesListFragment extends ListFragment {
 
     /**
      * notifing adapter about changing array
+     * need in case of deleting, adding notes
      */
-    public static void notifyArrayChanges(){
+    public static void notifyArrayChanges() {
         adapter.notifyDataSetChanged();
     }
 

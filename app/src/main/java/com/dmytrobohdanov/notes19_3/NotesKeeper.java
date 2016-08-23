@@ -5,16 +5,20 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
+/**
+ * Keeps array of notes
+ * and provides method for working with them
+ */
 public class NotesKeeper {
     private final String LOG_TAG = this.getClass().getSimpleName();
 
     private static NotesKeeper instance;
 
-    private ArrayList <Note> notes;
+    private ArrayList<Note> notes;
 
 
     //constructor
-    private NotesKeeper(){
+    private NotesKeeper() {
         notes = new ArrayList<>();
 
         //todo: remove temp lines
@@ -24,7 +28,7 @@ public class NotesKeeper {
         addNote(new Note("4th note", "text of it 4"));
     }
 
-    public static NotesKeeper getInstance(){
+    public static NotesKeeper getInstance() {
         if (instance == null) {
             instance = new NotesKeeper();
         }
@@ -35,14 +39,14 @@ public class NotesKeeper {
     /**
      * @return array of notes
      */
-    public ArrayList<Note> getArrayOfNotes(){
+    public ArrayList<Note> getArrayOfNotes() {
         return notes;
     }
 
     /**
      * Adding note to array
      */
-    public boolean addNote(Note note){
+    public boolean addNote(Note note) {
         return notes.add(note);
     }
 
@@ -51,10 +55,10 @@ public class NotesKeeper {
      *
      * @return true if succeed
      */
-    public boolean removeNote(int noteId){
+    public boolean removeNote(int noteId) {
         boolean success = false;
-        for (Note note: notes) {
-            if (note.getID() == noteId){
+        for (Note note : notes) {
+            if (note.getID() == noteId) {
                 success = notes.remove(note);
                 break;
             }
@@ -69,9 +73,9 @@ public class NotesKeeper {
      * @return note with specified ID,
      * or NULL in case if there is no note with such id
      */
-    public Note getNoteByID(int noteID){
-        for (Note note: notes) {
-            if (noteID == note.getID()){
+    public Note getNoteByID(int noteID) {
+        for (Note note : notes) {
+            if (noteID == note.getID()) {
                 return note;
             }
         }

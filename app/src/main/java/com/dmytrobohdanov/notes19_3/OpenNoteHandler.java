@@ -44,7 +44,7 @@ public class OpenNoteHandler {
             ft.commit();
         } else {
             Intent intent = new Intent(activity, NoteActivity.class);
-            intent.putExtra(NoteActivity.EXTRA_NOTE_ID, index);
+            intent.putExtra(NoteActivity.EXTRA_NOTE_ID_KEY, index);
             activity.startActivity(intent);
         }
     }

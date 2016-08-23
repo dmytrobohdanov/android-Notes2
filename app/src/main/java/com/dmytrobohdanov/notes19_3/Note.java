@@ -1,8 +1,6 @@
 package com.dmytrobohdanov.notes19_3;
 
 import android.graphics.Color;
-import android.util.Log;
-import android.widget.Toast;
 
 import java.util.Collections;
 import java.util.Date;
@@ -11,16 +9,16 @@ import java.util.Random;
 
 
 /**
- * Note is class for keeping notes
+ * Note is class for keeping note's data
  */
-//todo: write description
-
 public class Note {
+    //log tag, contains name of class
     private final String LOG_TAG = this.getClass().getSimpleName();
 
     //keeps last added note's id
     private static int idGenerator = 0;
 
+    //max length of title of note
     public static final int TITLE_MAX_LENGTH = 30;
 
     //array of note's colors
@@ -49,19 +47,21 @@ public class Note {
      * @param text of note
      */
     public Note(String text) {
-        //creating note with temp title
+        //creating note with no newTitle
         this("", text);
 
-        //setting new correct title
-        String title = "";
+        //setting new newTitle: getting it from text of note
+        String newTitle = "";
         int textLength = text.length();
         if (textLength > Note.TITLE_MAX_LENGTH) {
-            title = title + text.substring(0, 29) + "...";
+            //if text is too long for newTitle, cut it
+            newTitle = newTitle + text.substring(0, (TITLE_MAX_LENGTH - 3)) + "...";
         } else {
-            title = title + text;
+            //if text is no too long - just copy text as a newTitle
+            newTitle = newTitle + text;
         }
-
-        setTitle(title);
+        //setting new newTitle
+        setTitle(newTitle);
     }
 
     /**
@@ -170,7 +170,12 @@ public class Note {
      * @param title of note
      */
     public void setTitle(String title) {
+        if (title.length() > TITLE_MAX_LENGTH) {
+            title = title.substring(0, TITLE_MAX_LENGTH - 1);
+        }
         this.titleOfNote = title;
+
+        //updating last update time
         setLastUpdateTime();
     }
 
@@ -182,6 +187,8 @@ public class Note {
      */
     public void setText(String text) {
         this.textOfNote = text;
+
+        //updating last update time
         setLastUpdateTime();
     }
 
@@ -249,7 +256,7 @@ public class Note {
     public String getTagsString() {
         String tagsString = "";
 
-        if(tags == null || tags.isEmpty()){
+        if (tags == null || tags.isEmpty()) {
             return tagsString;
         }
 
@@ -328,8 +335,6 @@ public class Note {
      * Sets current time as time of last update of note
      */
     private void setLastUpdateTime() {
-        //todo: rename it
-//        this.lastUpdateTime = lastUpdateTime;
         this.lastUpdateTime = getCurrentTime();
     }
 

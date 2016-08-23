@@ -12,16 +12,19 @@ import android.widget.RelativeLayout;
 
 import java.lang.reflect.GenericArrayType;
 
+/**
+ * Initialization of floating action button for
+ * adding new note
+ */
 public class AddNoteButton {
-    private static final int LAYOUT_ID = R.id.main_layout;
-    Activity activity;
-    FloatingActionButton fab;
+    private final int FAB_ID = R.id.fab;
+    private Activity activity;
+    private FloatingActionButton fab;
 
     public AddNoteButton(Activity activity) {
         this.activity = activity;
 
-//        fab = new FloatingActionButton(activity);
-        fab = (FloatingActionButton) activity.findViewById(R.id.fab);// new AddNoteButton(this);
+        fab = (FloatingActionButton) activity.findViewById(FAB_ID);
         setListener(fab);
     }
 
@@ -40,20 +43,5 @@ public class AddNoteButton {
                 new OpenNoteHandler(activity).openNote(notesKeeper.getIndexOf(note));
             }
         });
-//        return false;
-    }
-
-    /**
-     * Setting params to Floating action button
-     */
-    private boolean setParamsToFAB(FloatingActionButton fab) {
-        fab.setImageResource(R.mipmap.ic_add_note_button);
-        fab.setSize(FloatingActionButton.SIZE_AUTO);
-
-        //setting gravity
-        CoordinatorLayout.LayoutParams params = new CoordinatorLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        params.anchorGravity = Gravity.BOTTOM | GravityCompat.END;
-        fab.setLayoutParams(params);
-        return true;
     }
 }
