@@ -20,12 +20,9 @@ public class AddNoteButton {
     public AddNoteButton(Activity activity) {
         this.activity = activity;
 
-        fab = new FloatingActionButton(activity);
-        setParamsToFAB(fab);
+//        fab = new FloatingActionButton(activity);
+        fab = (FloatingActionButton) activity.findViewById(R.id.fab);// new AddNoteButton(this);
         setListener(fab);
-
-        RelativeLayout layout = (RelativeLayout) activity.findViewById(LAYOUT_ID);
-        layout.addView(fab);
     }
 
     /**
