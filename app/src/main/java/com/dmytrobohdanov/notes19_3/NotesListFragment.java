@@ -11,6 +11,7 @@ import android.widget.ListView;
 
 /**
  * Holder for list of notes
+ * use notifyArrayChanges() when adding/deleting elements
  */
 public class NotesListFragment extends ListFragment {
     interface NoteListListener {

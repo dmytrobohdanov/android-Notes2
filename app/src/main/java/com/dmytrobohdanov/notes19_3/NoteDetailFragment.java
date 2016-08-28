@@ -1,11 +1,13 @@
 package com.dmytrobohdanov.notes19_3;
 
-import android.os.Bundle;
 import android.app.Fragment;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.ViewSwitcher;
 
 import java.util.ArrayList;
 
@@ -60,11 +62,31 @@ public class NoteDetailFragment extends Fragment {
             NotesKeeper notesKeeper = NotesKeeper.getInstance();
             Note note = notesKeeper.getNoteByID(noteId);
 
+            //setting listeners
+            ViewSwitcher vsTitle = (ViewSwitcher) view.findViewById(R.id.titleOfNote);
+            Listeners.setTouchListener(vsTitle, this.getActivity(), Listeners.CHANGE_TO_EDITTEXT);
+            Listeners.setOnFocusChangeListener(
+                    view.findViewById(R.id.titleOfNote_edit),
+                    noteId,
+                    this.getActivity());
+
+
+            ViewSwitcher vsText = (ViewSwitcher) view.findViewById(R.id.textOfNote);
+            Listeners.setTouchListener(vsText, this.getActivity(), Listeners.CHANGE_TO_EDITTEXT);
+
+            EditText editText = (EditText) view.findViewById(R.id.textOfNote_edit);
+            editText.setOnFocusChangeListener(
+            Listeners.setOnFocusChangeListener(
+                    view.findViewById(R.id.textOfNote_edit),
+                    noteId,
+                    this.getActivity()));
+
+
             //displaying note in fragment
-            TextView title = (TextView) view.findViewById(R.id.titleOfNote);
+            TextView title = (TextView) view.findViewById(R.id.titleOfNote_text);
             title.setText(note.getTitle());
 
-            TextView text = (TextView) view.findViewById(R.id.textOfNote);
+            TextView text = (TextView) view.findViewById(R.id.textOfNote_text);
 //            title.setText(note.getText());
             //todo: temp - remove later
             String str = note.getText();
